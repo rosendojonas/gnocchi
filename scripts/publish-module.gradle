@@ -12,7 +12,7 @@ android {
 
 ext {
     PUBLISH_GROUP_ID = 'io.gnocchi'
-    PUBLISH_VERSION = '0.1.2'
+    PUBLISH_VERSION = '0.1.3'
     PUBLISH_ARTIFACT_ID = 'gnocchi'
 }
 
