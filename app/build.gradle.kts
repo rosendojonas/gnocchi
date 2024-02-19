@@ -1,3 +1,5 @@
+import io.gnocchi.BuildConfiguration
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,14 +7,14 @@ plugins {
 
 android {
     namespace = "io.gnocchi"
-    compileSdk = 34
+    compileSdk = BuildConfiguration.compileSdk
 
     defaultConfig {
         applicationId = "io.gnocchi"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = BuildConfiguration.minSdk
+        targetSdk = BuildConfiguration.targetSdk
+        versionCode = BuildConfiguration.versionCode
+        versionName = BuildConfiguration.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

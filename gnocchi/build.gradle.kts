@@ -1,3 +1,4 @@
+import io.gnocchi.BuildConfiguration
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.maven
 import org.gradle.api.publish.maven.MavenPublication
@@ -11,10 +12,11 @@ plugins {
 
 android {
     namespace = "io.gnocchi"
-    compileSdk = 34
+    compileSdk = BuildConfiguration.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = BuildConfiguration.minSdk
+        lint.targetSdk = BuildConfiguration.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,6 +37,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += "-Xexplicit-api=strict"
     }
 }
 
@@ -52,9 +55,9 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("gnocchi") {
-                groupId = "io.gnocchi"
-                artifactId = "gnocchi"
-                version = "0.1.0"
+                groupId = BuildConfiguration.groupId
+                artifactId = BuildConfiguration.artifactId
+                version = BuildConfiguration.versionName
 
                 from(components["release"])
             }
