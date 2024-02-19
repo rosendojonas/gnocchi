@@ -1,0 +1,80 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+android {
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'io.gnocchi'
+    PUBLISH_VERSION = '0.1.2'
+    PUBLISH_ARTIFACT_ID = 'gnocchi'
+}
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // The coordinates of the library, being set from variables that
+                // we'll set up later
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+
+                // Two artifacts, the `aar` (or `jar`) and the sources
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                //artifact androidSourcesJar
+
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'A library for app state managment.'
+                    url = 'https://github.com/rosendojonas/gnocchi'
+                    licenses {
+                        license {
+                            name = 'Apache 2.0 License'
+                            url = 'https://github.com/rosendojonas/gnocchi/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'rosendojonas'
+                            name = 'jonas Rosendo'
+                            email = ''
+                        }
+                        // Add all other devs here...
+                    }
+
+                    // Version control info - if you're using GitHub, follow the
+                    // format as seen here
+                    scm {
+                        connection = 'scm:git:github.com/rosendojonas/gnocchi.git'
+                        developerConnection = 'scm:git:ssh://github.com/rosendojonas/gnocchi.git'
+                        url = 'https://github.com/rosendojonas/gnocchi/tree/main'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+    sign publishing.publications
+}
