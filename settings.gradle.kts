@@ -13,6 +13,10 @@ dependencyResolutionManagement {
     }
 }
 
+
+
 rootProject.name = "Gnocchi"
 include(":app")
-include(":gnocchi")
+include(":gnocchi-core")
+include(":gnocchi-android-view")
+include(":gnocchi-compose")

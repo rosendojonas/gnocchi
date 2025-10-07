@@ -13,28 +13,20 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-/**
- * A -> Action
- * E -> Event
- * S - > State
- * */
-public abstract class GnocchiViewModel<A, S, E> : ViewModel() {
+abstract class GnocchiViewModel<ACTION, STATE, EVENT>(initState: STATE) : ViewModel() {
 
-    protected abstract val initState: S
-
-    protected open var oldState: S = initState
+    protected open var oldState: STATE = initState
 
     private val _state = MutableStateFlow(value = initState)
-    public val state: StateFlow<S> = _state.asStateFlow()
+    val state: StateFlow<STATE> = _state.asStateFlow()
+    private val _events = Channel<EVENT>(Channel.BUFFERED)
+    val events: Flow<EVENT> = _events.receiveAsFlow()
 
-    private val _events = Channel<E>(Channel.BUFFERED)
-    public val events: Flow<E> = _events.receiveAsFlow()
-
-    private val _actions = Channel<A>(Channel.BUFFERED)
+    private val _actions = Channel<ACTION>(Channel.BUFFERED)
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    protected abstract fun processAction(action: A)
+    protected abstract fun processAction(action: ACTION)
 
     init {
         coroutineScope.launch {
@@ -44,16 +36,16 @@ public abstract class GnocchiViewModel<A, S, E> : ViewModel() {
         }
     }
 
-    protected open fun updateState(newState: S) {
+    protected open fun updateState(newState: STATE) {
         oldState = _state.value
         _state.value = newState
     }
 
-    protected fun sendEvent(event: E): Job = coroutineScope.launch {
+    protected fun sendEvent(event: EVENT): Job = coroutineScope.launch {
         _events.send(event)
     }
 
-    public fun action(action: A): Job = coroutineScope.launch {
+    fun action(action: ACTION): Job = coroutineScope.launch {
         _actions.send(action)
     }
 }
