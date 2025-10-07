@@ -1,7 +1,4 @@
 import io.gnocchi.BuildConfiguration
-import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.maven
-import org.gradle.api.publish.maven.MavenPublication
 
 plugins {
     id("com.android.library")
