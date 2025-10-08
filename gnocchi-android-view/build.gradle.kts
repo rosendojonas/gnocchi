@@ -3,7 +3,11 @@ import io.gnocchi.BuildConfiguration
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    `maven-publish`
 }
+
+group = providers.gradleProperty("group").getOrElse("com.github.rosendojonas.gnocchi") // JitPack Standard
+version = providers.gradleProperty("version").getOrElse("0.0.0")
 
 android {
     namespace = BuildConfiguration.gnocchiAndroidViewNamespace
@@ -37,6 +41,42 @@ android {
         targetCompatibility = BuildConfiguration.javaVersion
     }
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                artifactId = "gnocchi-android-view"
+
+                from(components["release"])
+
+                pom {
+                    name.set("gnocchi-android-view")
+                    description.set("Compose utilities for Gnocchi Android")
+                    url.set("https://github.com/rosendojonas/gnocchi")
+                    licenses {
+                        license {
+                            name.set("Apache-2.0")
+                            url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("rosendojonas")
+                            name.set("Jonas Rosendo")
+                        }
+                    }
+                    scm {
+                        url.set("https://github.com/rosendojonas/gnocchi")
+                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi.git")
+                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi.git")
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 dependencies {
 
