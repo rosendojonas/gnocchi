@@ -8,7 +8,7 @@ object BuildConfiguration {
     const val minSdk = 21
     const val versionCode = 3
     const val versionName = "0.1.3"
-    const val gnocchiCoreNamespace = "io.gnocchi"
+    const val gnocchiCoreNamespace = "io.gnocchi.core"
     const val gnocchiComposeNamespace = "io.gnocchi_compose"
     const val gnocchiAndroidViewNamespace = "io.gnocchi_android_view"
     const val groupId = "io.gnocchi"
