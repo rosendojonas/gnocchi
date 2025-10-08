@@ -5,4 +5,4 @@ before_install:
   - echo "Publishing only library modules to MavenLocal (core, compose, android-view)"
 
 install:
-  - ./gradlew -Pgroup=com.github.rosendojonas -Pversion=${VERSION} -xlint -xtest --no-daemon --stacktrace :gnocchi-core:publishReleasePublicationToMavenLocal #:gnocchi-compose:publishReleasePublicationToMavenLocal :gnocchi-android-view:publishReleasePublicationToMavenLocal
+  - ./gradlew -Pgroup=com.github.rosendojonas.gnocchi -Pversion=${VERSION} -xlint -xtest --no-daemon --stacktrace :gnocchi-core:publishReleasePublicationToMavenLocal #:gnocchi-compose:publishReleasePublicationToMavenLocal :gnocchi-android-view:publishReleasePublicationToMavenLocal
