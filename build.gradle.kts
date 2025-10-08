@@ -6,5 +6,3 @@ plugins {
     alias(libs.plugins.nexusPublish)
     alias(libs.plugins.compose.compiler) apply false
 }
-
-apply("${rootDir}/scripts/publish-root.gradle")
