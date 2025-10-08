@@ -61,7 +61,7 @@ afterEvaluate {
                 pom {
                     name.set("gnocchi-core")
                     description.set("Core utilities for Gnocchi Android")
-                    url.set("https://github.com/rosendojonas/gnocchi/tree/main/gnocchi-core")
+                    url.set("https://github.com/rosendojonas/gnocchi")
                     licenses {
                         license {
                             name.set("Apache-2.0")
@@ -75,9 +75,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        url.set("https://github.com/rosendojonas/gnocchi/tree/main/gnocchi-core")
-                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi/tree/main/gnocchi-core.git")
-                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi/tree/main/gnocchi-core.git")
+                        url.set("https://github.com/rosendojonas/gnocchi")
+                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi.git")
+                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi.git")
                     }
                 }
             }
