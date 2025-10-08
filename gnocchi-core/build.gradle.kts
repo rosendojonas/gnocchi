@@ -3,9 +3,8 @@ import io.gnocchi.BuildConfiguration
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    `maven-publish`
 }
-
-apply("${rootProject.projectDir}/scripts/publish-module.gradle")
 
 android {
     namespace = BuildConfiguration.gnocchiCoreNamespace
@@ -17,6 +16,12 @@ android {
 
         testInstrumentationRunner = BuildConfiguration.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 
     buildTypes {
@@ -39,6 +44,19 @@ android {
     compileOptions {
         sourceCompatibility = BuildConfiguration.javaVersion
         targetCompatibility = BuildConfiguration.javaVersion
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.rosendojonas" // <- padrão JitPack
+                artifactId = "gnocchi-core"              // <- nome do módulo/artifact
+                // A version é a TAG do Git; não precisa fixar aqui
+            }
+        }
     }
 }
 
