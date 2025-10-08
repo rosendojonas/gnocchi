@@ -52,9 +52,8 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.rosendojonas" // <- padrão JitPack
-                artifactId = "gnocchi-core"              // <- nome do módulo/artifact
-                // A version é a TAG do Git; não precisa fixar aqui
+                groupId = "com.github.rosendojonas" // JitPack Standard
+                artifactId = "gnocchi-core" // artifact name
             }
         }
     }
