@@ -1,2 +1,8 @@
 jdk:
   - openjdk17
+
+before_install:
+  - echo "Starting JitPack build for gnocchi-core"
+
+install:
+  - ./gradlew :gnocchi-core:publishReleasePublicationToMavenLocal -xlint -xtest --no-daemon --stacktrace
