@@ -7,6 +7,7 @@ plugins {
 }
 
 group = "com.github.rosendojonas" // JitPack Standard
+version = providers.gradleProperty("version").getOrElse("0.0.0")
 
 android {
     namespace = BuildConfiguration.gnocchiCoreNamespace

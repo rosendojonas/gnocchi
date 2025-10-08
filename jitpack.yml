@@ -6,7 +6,7 @@ before_install:
 
 install:
   # Usa a versão da TAG do JitPack (${VERSION}) e fixa o group.
-  - ./gradlew -Pgroup=com.github.rosendojonas -Pversion=0.1.11 -xlint -xtest --no-daemon --stacktrace \
+  - ./gradlew -Pgroup=com.github.rosendojonas -Pversion=${VERSION} -xlint -xtest --no-daemon --stacktrace \
     :gnocchi-core:assembleRelease \
     :gnocchi-core:publishReleasePublicationToMavenLocal \
     #:gnocchi-compose:assembleRelease \
