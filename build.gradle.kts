@@ -3,6 +3,5 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.androidLibrary) apply false
-    alias(libs.plugins.nexusPublish)
     alias(libs.plugins.compose.compiler) apply false
 }

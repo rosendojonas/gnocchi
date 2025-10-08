@@ -6,6 +6,8 @@ plugins {
     `maven-publish`
 }
 
+group = "com.github.rosendojonas" // JitPack Standard
+
 android {
     namespace = BuildConfiguration.gnocchiCoreNamespace
     compileSdk = BuildConfiguration.compileSdk
@@ -52,7 +54,6 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                groupId = "io.gnocchi" // JitPack Standard
                 artifactId = "gnocchi-core"
 
                 from(components["release"])
@@ -60,7 +61,7 @@ afterEvaluate {
                 pom {
                     name.set("gnocchi-core")
                     description.set("Core utilities for Gnocchi Android")
-                    url.set("https://github.com/rosendojonas/gnocchi")
+                    url.set("https://github.com/rosendojonas/gnocchi/tree/main/gnocchi-core")
                     licenses {
                         license {
                             name.set("Apache-2.0")
