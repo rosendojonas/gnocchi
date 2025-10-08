@@ -6,7 +6,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.github.rosendojonas.gnocchi" // JitPack Standard
+group = providers.gradleProperty("group").getOrElse("com.github.rosendojonas.gnocchi") // JitPack Standard
 version = providers.gradleProperty("version").getOrElse("0.0.0")
 
 android {
