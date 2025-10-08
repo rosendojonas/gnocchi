@@ -74,9 +74,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        url.set("https://github.com/rosendojonas/gnocchi")
-                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi.git")
-                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi.git")
+                        url.set("https://github.com/rosendojonas/gnocchi/tree/main/gnocchi-core")
+                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi/tree/main/gnocchi-core.git")
+                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi/tree/main/gnocchi-core.git")
                     }
                 }
             }
