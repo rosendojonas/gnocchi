@@ -2,14 +2,7 @@ jdk:
   - openjdk17
 
 before_install:
-  - echo "Building only library modules for JitPack (core, compose, android-view)"
+  - echo "Publishing only library modules to MavenLocal (core, compose, android-view)"
 
 install:
-  # Usa a versão da TAG do JitPack (${VERSION}) e fixa o group.
-  - ./gradlew -Pgroup=com.github.rosendojonas -Pversion=${VERSION} -xlint -xtest --no-daemon --stacktrace \
-    :gnocchi-core:assembleRelease \
-    :gnocchi-core:publishReleasePublicationToMavenLocal
-    #:gnocchi-compose:assembleRelease \
-    #:gnocchi-compose:publishReleasePublicationToMavenLocal \
-    #:gnocchi-android-view:assembleRelease \
-    #:gnocchi-android-view:publishReleasePublicationToMavenLocal
+  - ./gradlew -Pgroup=com.github.rosendojonas -Pversion=${VERSION} -xlint -xtest --no-daemon --stacktrace :gnocchi-core:publishReleasePublicationToMavenLocal #:gnocchi-compose:publishReleasePublicationToMavenLocal :gnocchi-android-view:publishReleasePublicationToMavenLocal
