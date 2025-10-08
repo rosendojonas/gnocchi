@@ -21,6 +21,7 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
+            withJavadocJar()
         }
     }
 
@@ -51,13 +52,38 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
+                groupId = "io.gnocchi" // JitPack Standard
+                artifactId = "gnocchi-core"
+
                 from(components["release"])
-                groupId = "com.github.rosendojonas" // JitPack Standard
-                artifactId = "gnocchi-core" // artifact name
+
+                pom {
+                    name.set("gnocchi-core")
+                    description.set("Core utilities for Gnocchi Android")
+                    url.set("https://github.com/rosendojonas/gnocchi")
+                    licenses {
+                        license {
+                            name.set("Apache-2.0")
+                            url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("rosendojonas")
+                            name.set("Jonas Rosendo")
+                        }
+                    }
+                    scm {
+                        url.set("https://github.com/rosendojonas/gnocchi")
+                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi.git")
+                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi.git")
+                    }
+                }
             }
         }
     }
 }
+
 
 dependencies {
     implementation(libs.androidx.core.ktx)
