@@ -6,7 +6,7 @@ plugins {
     `maven-publish`
 }
 
-group = providers.gradleProperty("group").getOrElse("io.gnocchi")
+group = providers.gradleProperty("group").getOrElse(BuildConfiguration.groupId)
 version = providers.gradleProperty("version").getOrElse("0.0.0")
 
 android {
@@ -21,7 +21,7 @@ android {
     }
 
     publishing {
-        singleVariant("release") {
+        singleVariant(BuildConfiguration.releaseVariant) {
             withSourcesJar()
             withJavadocJar()
         }
@@ -52,15 +52,15 @@ android {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("release") {
-                artifactId = "gnocchi-android-view"
+            create<MavenPublication>(BuildConfiguration.releaseVariant) {
+                artifactId = BuildConfiguration.androidViewArtifactId
 
-                from(components["release"])
+                from(components[BuildConfiguration.releaseVariant])
 
                 pom {
-                    name.set("gnocchi-android-view")
+                    name.set(BuildConfiguration.androidViewArtifactId)
                     description.set("Compose utilities for Gnocchi Android")
-                    url.set("https://github.com/rosendojonas/gnocchi")
+                    url.set("https://${BuildConfiguration.repo}")
                     licenses {
                         license {
                             name.set("Apache-2.0")
@@ -74,9 +74,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        url.set("https://github.com/rosendojonas/gnocchi")
-                        connection.set("scm:git:https://github.com/rosendojonas/gnocchi.git")
-                        developerConnection.set("scm:git:ssh://git@github.com/rosendojonas/gnocchi.git")
+                        url.set("https://${BuildConfiguration.repo}")
+                        connection.set("scm:git:https://${BuildConfiguration.repo}.git")
+                        developerConnection.set("scm:git:ssh://git@${BuildConfiguration.repo}.git")
                     }
                 }
             }
