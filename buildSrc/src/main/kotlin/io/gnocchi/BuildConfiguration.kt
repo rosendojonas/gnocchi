@@ -12,7 +12,7 @@ object BuildConfiguration {
     const val gnocchiCoreNamespace = "io.gnocchi.core"
     const val gnocchiComposeNamespace = "io.gnocchi_compose"
     const val gnocchiAndroidViewNamespace = "io.gnocchi_android_view"
-    const val groupId = "io.gnocchi"
+    const val groupId = "com.github.rosendojonas.gnocchi"
     const val coreArtifactId = "gnocchi-core"
     const val composeArtifactId = "gnocchi-compose"
     const val androidViewArtifactId = "gnocchi-android-view"

@@ -15,7 +15,7 @@ lifecycleRuntimeCompose = "2.9.4"
 lifecycleRuntimeKtx = "2.9.4"
 lifecycleViewmodelKtx = "2.9.4"
 
-gnocchi = "0.1.22"
+gnocchi = "0.1.23"
 
 [libraries]
 
