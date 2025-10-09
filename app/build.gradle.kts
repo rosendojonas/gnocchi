@@ -50,8 +50,9 @@ android {
 
 dependencies {
 
-    implementation(project(":gnocchi-compose"))
-    implementation(project(":gnocchi-android-view"))
+    implementation(libs.gnocchi.core)
+    implementation(libs.gnocchi.compose)
+    implementation(libs.gnocchi.android.view)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

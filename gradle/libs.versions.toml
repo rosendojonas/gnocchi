@@ -15,7 +15,16 @@ lifecycleRuntimeCompose = "2.9.4"
 lifecycleRuntimeKtx = "2.9.4"
 lifecycleViewmodelKtx = "2.9.4"
 
+gnocchiAndroidView = "0.1.21"
+gnocchiCompose = "0.1.21"
+gnocchiCore = "0.1.21"
+
 [libraries]
+
+gnocchi-android-view = { module = "com.github.rosendojonas.gnocchi:gnocchi-android-view", version.ref = "gnocchiAndroidView" }
+gnocchi-compose = { module = "com.github.rosendojonas.gnocchi:gnocchi-compose", version.ref = "gnocchiCompose" }
+gnocchi-core = { module = "com.github.rosendojonas.gnocchi:gnocchi-core", version.ref = "gnocchiCore" }
+
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityCompose" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
