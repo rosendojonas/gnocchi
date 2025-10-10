@@ -1,4 +1,4 @@
-package io.gnocchi
+package io.gnocchi.view
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -19,10 +19,10 @@ abstract class GnocchiViewModel<ACTION, STATE, EVENT>(initState: STATE) : ViewMo
 
     private val _state = MutableStateFlow(value = initState)
     val state: StateFlow<STATE> = _state.asStateFlow()
-    private val _events = Channel<EVENT>(Channel.BUFFERED)
+    private val _events = Channel<EVENT>(Channel.Factory.BUFFERED)
     val events: Flow<EVENT> = _events.receiveAsFlow()
 
-    private val _actions = Channel<ACTION>(Channel.BUFFERED)
+    private val _actions = Channel<ACTION>(Channel.Factory.BUFFERED)
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
